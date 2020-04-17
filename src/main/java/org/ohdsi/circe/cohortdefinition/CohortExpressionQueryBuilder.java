@@ -20,13 +20,10 @@ package org.ohdsi.circe.cohortdefinition;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.stream.Collectors;
 import org.apache.commons.lang3.StringUtils;
-import org.ohdsi.circe.cohortdefinition.builders.CriteriaSqlBuilder;
 import org.ohdsi.circe.cohortdefinition.builders.ConditionEraSqlBuilder;
 import org.ohdsi.circe.cohortdefinition.builders.ConditionOccurrenceSqlBuilder;
+import org.ohdsi.circe.cohortdefinition.builders.CriteriaSqlBuilder;
 import org.ohdsi.circe.cohortdefinition.builders.DeathSqlBuilder;
 import org.ohdsi.circe.cohortdefinition.builders.DeviceExposureSqlBuilder;
 import org.ohdsi.circe.cohortdefinition.builders.DoseEraSqlBuilder;
@@ -42,6 +39,10 @@ import org.ohdsi.circe.cohortdefinition.builders.SpecimenSqlBuilder;
 import org.ohdsi.circe.cohortdefinition.builders.VisitOccurrenceSqlBuilder;
 import org.ohdsi.circe.helper.ResourceHelper;
 import org.ohdsi.circe.vocabulary.ConceptSetExpressionQueryBuilder;
+
+import java.util.ArrayList;
+import java.util.List;
+import java.util.stream.Collectors;
 
 import static org.ohdsi.circe.cohortdefinition.builders.BuilderUtils.buildDateRangeClause;
 import static org.ohdsi.circe.cohortdefinition.builders.BuilderUtils.buildNumericRangeClause;
@@ -172,7 +173,7 @@ public class CohortExpressionQueryBuilder implements IGetCriteriaSqlDispatcher, 
         codesetInserts.add(conceptSetInsert);
       }
         codesetQuery = StringUtils.replace(codesetQuery, "@codesetInserts", "INSERT INTO #Codesets (codeset_id, concept_id)\n"
-                + StringUtils.join(codesetInserts, " UNION ALL \n")) + ";";
+                + StringUtils.join(codesetInserts, " UNION ALL \n") + ";");
     } else {
         codesetQuery = StringUtils.replace(CODESET_QUERY_TEMPLATE, "@codesetInserts", StringUtils.EMPTY);
     }

@@ -6,3 +6,5 @@ CREATE TABLE #Codesets (
 
 @codeset_inserts
 
+UPDATE STATISTICS #Codesets;
+
